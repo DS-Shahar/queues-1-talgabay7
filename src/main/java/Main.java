@@ -140,6 +140,22 @@ class Main {
 			q.insert(q2.remove());
 		return flag;
 	}
+	public static Time firstLastDif(Queue<Time> q) {
+		Queue<Time> q2=new Queue<>();
+		Time first=q.head();
+		Time last=q.head();
+		while(!q.isEmpty()) {
+			last=q.head();
+			q2.insert(q.remove());
+		}
+		while(!q2.isEmpty())
+			q.insert(q2.remove());
+		int difHour=last.getHour()-first.getHour();
+		int difMinute=last.getMinute()-first.getMinute();
+		int difSecond=last.getSecond()-first.getSecond();
+		Time difference=new Time(difHour,difMinute,difSecond);
+		return difference;
+	}
   public static void main(String[] args) {
     System.out.println("Hello World!");
   }
