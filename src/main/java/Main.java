@@ -125,6 +125,21 @@ class Main {
 		while(!sorted.isEmpty())
 			q.insert(sorted.remove());
 	}
+	public static boolean q1_numStreak(Queue<Integer> q,int x) {
+		Queue<Integer> q2=new Queue<>();
+		boolean flag=false;
+		int y=q.head();
+		q2.insert(q.remove());
+		while(!q.isEmpty()) {
+			if(y==x&&q.head()==x)
+				flag=true;
+			y=q.head();
+			q2.insert(q.remove());
+		}
+		while(!q2.isEmpty())
+			q.insert(q2.remove());
+		return flag;
+	}
   public static void main(String[] args) {
     System.out.println("Hello World!");
   }
