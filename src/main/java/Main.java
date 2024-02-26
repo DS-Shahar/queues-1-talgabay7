@@ -149,10 +149,65 @@ class Main {
 		while(!q2.isEmpty())
 			q.insert(q2.remove());
 		int difHour=last.getHour()-first.getHour();
-		int difMinute=last.getMinute()-first.getMinute();
-		int difSecond=last.getSecond()-first.getSecond();
+		int difMinute=0;
+		int difSecond=0;
+		if(last.getSecond()-first.getSecond()<0) {
+			difSecond=last.getSecond()-first.getSecond()+60;
+			difMinute--;
+		}
+		else
+			difSecond=last.getSecond()-first.getSecond();
+		if(last.getMinute()-first.getMinute()<0) {
+			difMinute=last.getMinute()-first.getMinute()+60;
+			difHour--;
+		}
+		else
+			difMinute=last.getMinute()-first.getMinute();
 		Time difference=new Time(difHour,difMinute,difSecond);
 		return difference;
+	}
+	public static boolean faster(Time t1,Time t2) {
+		if(t1.getHour()<t2.getHour())
+			return true;
+		else if(t1.getHour()>t2.getHour())
+			return false;
+		else {
+			if(t1.getMinute()<t2.getMinute())
+				return true;
+			else if(t1.getMinute()>t2.getMinute())
+				return false;
+			else {
+				if(t1.getSecond()>t2.getSecond())
+					return false;
+				return true;
+			}
+		}
+	}
+	public static void q2b(Queue<Time> q) {
+		Queue<Time> q2=new Queue<>();
+		Time min=firstLastDif(q);
+		Queue<Time> dif=new Queue<>();
+		dif.insert(q.head());
+		q2.insert(q.remove());
+		dif.insert(q.head());
+		int count=0;
+		int countMax=0;
+		Time difference=firstLastDif(dif);
+		while(!q.isEmpty()) {
+			count++;
+			difference=firstLastDif(dif);
+			if(faster(difference,min)) {
+				min=difference;
+				countMax=count;
+			}
+			q2.insert(q.remove());
+			dif.remove();
+			if(!q.isEmpty())
+				dif.insert(q.head());
+		}
+		while(!q2.isEmpty())
+			q.insert(q2.remove());
+		System.out.println("athlets numbers: "+countMax+", "+(countMax+1));
 	}
   public static void main(String[] args) {
     System.out.println("Hello World!");
