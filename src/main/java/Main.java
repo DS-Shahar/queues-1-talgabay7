@@ -126,18 +126,16 @@ class Main {
 			q.insert(sorted.remove());
 	}
 	public static boolean q1_numStreak(Queue<Integer> q,int x) {
-		Queue<Integer> q2=new Queue<>();
+		q.insert(null);
 		boolean flag=false;
 		int y=q.head();
-		q2.insert(q.remove());
-		while(!q.isEmpty()) {
+		q.insert(q.remove());
+		while(q.head()!=null) {
 			if(y==x&&q.head()==x)
 				flag=true;
 			y=q.head();
-			q2.insert(q.remove());
+			q.insert(q.remove());
 		}
-		while(!q2.isEmpty())
-			q.insert(q2.remove());
 		return flag;
 	}
 	public static Time firstLastDif(Queue<Time> q) {
