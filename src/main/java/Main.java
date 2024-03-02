@@ -209,6 +209,43 @@ class Main {
 			q.insert(q2.remove());
 		System.out.println("athlets numbers: "+countMax+", "+(countMax+1));
 	}
+	public static void q8_merge(Queue<Integer> q1,Queue<Integer> q2){
+		q1.insert(null);
+		int x1,x2;
+		while(q1.head()!=null&&!q2.isEmpty()){
+			x1=q1.head();
+			x2=q2.head();
+			if(x2<x1){
+				q1.insert(x2);
+				q2.remove();
+			}
+			else{
+				q1.insert(x1);
+				q1.remove();
+			}
+		}
+		while(!q2.isEmpty())
+			q1.insert(q2.remove());
+		while(q1.head()!=null)
+			q1.insert(q1.remove());
+		q1.remove();
+	}
+	public static String q9_delivery(Queue<Deliver> q,int engine){
+		boolean flag=false;
+		q.insert(null);
+		String Id="not found";
+		while(q.head()!=null){
+			if(q.head().getCc>=engine&&!flag){
+				Id=q.head().getId();
+				flag=true;
+				q.remove();
+			}
+			if(q.head()!=null)
+				q.insert(q.remove());
+		}
+		q.remove();
+		return Id;
+	}
   public static void main(String[] args) {
     System.out.println("Hello World!");
   }
