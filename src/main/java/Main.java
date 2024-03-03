@@ -230,12 +230,12 @@ class Main {
 			q1.insert(q1.remove());
 		q1.remove();
 	}
-	public static String q9_delivery(Queue<Deliver> q,int engine){
+	public static String q9_delivery(Queue<Wolter> q,int engine){
 		boolean flag=false;
 		q.insert(null);
 		String Id="not found";
 		while(q.head()!=null){
-			if(q.head().getCc>=engine&&!flag){
+			if(q.head().getCc()>=engine&&!flag){
 				Id=q.head().getId();
 				flag=true;
 				q.remove();
