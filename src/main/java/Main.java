@@ -246,7 +246,30 @@ class Main {
 		q.remove();
 		return Id;
 	}
+	public static void audienceEnterance(DoubleQueue qq) {
+		System.out.println("choose between option 1,option 2 and option 3 ");
+		int option=input.nextInt();
+		int user;
+		int act;
+		while(option!=3) {
+			if(option==1) {
+				System.out.println("enter your user number and 1 if you want to do sth with cash ");
+				user=input.nextInt();
+				act=input.nextInt();
+				qq.add(user, act);
+			}
+			else if(option==2){
+				user=qq.next();
+				System.out.println(user);
+			}
+			System.out.println("choose between option 1,option 2 and option 3 ");
+			option=input.nextInt();
+		}
+	}
   public static void main(String[] args) {
-    System.out.println("Hello World!");
+    Queue<Integer> fast=new Queue<>();
+    Queue<Integer> slow=new Queue<>();
+    DoubleQueue qq=new DoubleQueue(fast,slow);
+    audienceEnterance(qq);
   }
 }
